@@ -67,16 +67,11 @@ customer[:cash] > pet[:price]
 end
 
 def sell_pet_to_customer(pet_shop_info, pet_to_sell, customer_info)
-  if find_pet_by_name(pet_shop_info,pet_to_sell)
-    binding.pry
-    if customer_can_afford_pet(pet_shop_info,customer_info)
-      binding.pry
-        add_pet_to_customer(customer_info,pet_to_sell)
-        increase_pets_sold(pet_shop_info)
-        pet_price = pet_to_sell[:price]
-        add_or_remove_cash(pet_shop_info, pet_price)
-    end
-  end
+  if !pet_to_sell.nil? && customer_can_afford_pet(customer_info, pet_to_sell)
+        add_pet_to_customer(customer_info, pet_to_sell)
+        increase_pets_sold(pet_shop_info,1)
+        add_or_remove_cash(pet_shop_info, pet_to_sell[:price])
+  end  
 end
 #===============
 
